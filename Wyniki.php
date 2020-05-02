@@ -77,15 +77,67 @@ echo "Ilosc jedeynek pionem w M";
 
 echo "<br>";
 
+
+
 $PoziomM=$conn->query('SELECT COUNT(wybor_zawodu) FROM m where id in (1, 11, 21, 23) and wybor_zawodu=2');
     while($row2=$PoziomM-> fetch_assoc()){
      echo $row2['COUNT(wybor_zawodu)'];
-	 }
-echo "Ilosc dwujek poziom w M";
-
-$rowMP=$row2['COUNT(wybor_zawodu)'];
-echo $rowMP;
 	
+echo "Ilosc dwujek poziom w M";	
+ 
+	 echo "</br>";
+	 
+$WypluwanieM2=$row2['COUNT(wybor_zawodu)'];
+echo $WypluwanieM2;
+
+	
+	
+	 }
+
+
+echo "</br>";
+
+$wypluwanie=$conn->query('SELECT COUNT(wybor_zawodu) FROM m where wybor_zawodu=1 and id<=10');
+    while($row=$wypluwanie-> fetch_assoc()){
+     echo $row['COUNT(wybor_zawodu)'];
+
+echo "</br>";
+
+
+
+
+$wypluwanieS=$row['COUNT(wybor_zawodu)'];
+echo $wypluwanieS;
+
+echo "</br>";
+
+$wypluwanieM= $wypluwanieS+$WypluwanieM2;
+echo "Wyinik dla M";
+
+echo $wypluwanieM;
+
+echo "</br>";
+
+if ($wypluwanieM<5) 
+
+    $predyspozycjeM= "Niezainteresowany";
+
+    elseif ($wypluwanieM>=5 & $wypluwanieM<=9) 
+    
+    $predyspozycjeM= "Małe zainteresowanie";
+	
+    elseif ($wypluwanieM >=10 & $wypluwanieM<=14 ) 
+    
+    $predyspozycjeM= "zainteresowanie zawodem";
+    
+    elseif ($wypluwanieM>15) 
+    
+    $predyspozycjeM= "Duże zainteresowanie zawodem";
+
+    echo $predyspozycjeM;
+
+	
+	}
 $conn->close();
 
 }
